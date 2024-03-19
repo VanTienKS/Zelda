@@ -26,7 +26,8 @@ class Game:
             # update
             
             # render   
-            self.level.render(self.screen)
+            self.screen.fill(('black'))
+            self.level.render()
             
                     
             pygame.display.update()
