@@ -26,7 +26,6 @@ class Game:
             # update
             
             # render   
-            self.screen.fill(('black'))
             self.level.render()
             
                     
