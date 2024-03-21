@@ -1,10 +1,11 @@
 import pygame
 from random import choice
 from .settings import *
-from scripts.tile import Tile
-from scripts.player import Player
 from scripts.debug import debug
 from scripts.support import import_csv_layout, import_folder
+from scripts.tile import Tile
+from scripts.player import Player
+from scripts.weapon import Weapon
 
 
 class Level:
@@ -16,6 +17,9 @@ class Level:
         # sprite groub setup
         self.visible_sprites = YSortCameraGroup()
         self.obstacles_sprites = pygame.sprite.Group()
+
+        # attack sprites
+        self.current_attack = None
 
         # sprite setup
         self.create_map()
@@ -48,7 +52,15 @@ class Level:
                             Tile((x,y), [self.visible_sprites, self.obstacles_sprites], 'object', surf)
 
         self.player = Player(
-            (1400, 950), [self.visible_sprites], self.obstacles_sprites)
+            (1400, 950), [self.visible_sprites], self.obstacles_sprites, self.create_attack, self.destroy_weapon)
+
+    def create_attack(self):
+        self.create_attack = Weapon(self.player, [self.visible_sprites])
+
+    def destroy_weapon(self):
+        if self.create_attack:
+            self.create_attack.kill()
+        self.current_attack = None
 
     def render(self):
         # update and draw the game
