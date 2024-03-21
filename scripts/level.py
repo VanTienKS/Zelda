@@ -6,6 +6,7 @@ from scripts.support import import_csv_layout, import_folder
 from scripts.tile import Tile
 from scripts.player import Player
 from scripts.weapon import Weapon
+from scripts.ui import UI
 
 
 class Level:
@@ -23,6 +24,9 @@ class Level:
 
         # sprite setup
         self.create_map()
+        
+        # user interface
+        self.ui = UI()
 
     def create_map(self):
 
@@ -66,6 +70,9 @@ class Level:
         # update and draw the game
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
+        
+        self.ui.display(self.player)
+        
         debug(self.player.status)
 
 
