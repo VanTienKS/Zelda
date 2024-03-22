@@ -24,7 +24,7 @@ class Level:
 
         # sprite setup
         self.create_map()
-        
+
         # user interface
         self.ui = UI()
 
@@ -39,7 +39,7 @@ class Level:
             'grass': import_folder('graphics/grass'),
             'objects': import_folder('graphics/objects'),
         }
-        
+
         for style, layout in layouts.items():
             for row_index, row in enumerate(layout):
                 for col_index, col in enumerate(row):
@@ -50,16 +50,23 @@ class Level:
                             Tile((x, y), [self.obstacles_sprites], 'invisible')
                         if style == 'grass':
                             random_grass_img = choice(graphics['grass'])
-                            Tile((x,y), [self.visible_sprites, self.obstacles_sprites], 'grass', random_grass_img)
+                            Tile((x, y), [
+                                 self.visible_sprites, self.obstacles_sprites], 'grass', random_grass_img)
                         if style == 'object':
                             surf = graphics['objects'][int(col)]
-                            Tile((x,y), [self.visible_sprites, self.obstacles_sprites], 'object', surf)
+                            Tile((x, y), [self.visible_sprites,
+                                 self.obstacles_sprites], 'object', surf)
 
         self.player = Player(
-            (1400, 950), [self.visible_sprites], self.obstacles_sprites, self.create_attack, self.destroy_weapon)
+            (1400, 950), [self.visible_sprites], self.obstacles_sprites, self.create_attack, self.destroy_weapon, self.create_magic)
 
     def create_attack(self):
         self.create_attack = Weapon(self.player, [self.visible_sprites])
+
+    def create_magic(self, style, strength, cost):
+        print(style)
+        print(strength)
+        print(cost)
 
     def destroy_weapon(self):
         if self.create_attack:
@@ -67,13 +74,13 @@ class Level:
         self.current_attack = None
 
     def render(self):
-        
+
         # update and draw the game
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
-        
+
         self.ui.display(self.player)
-        
+
         debug(self.player.status)
 
 
@@ -98,7 +105,7 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.offset.y = player.rect.centery - self.half_height
 
         # drawing the floor
-        floor_offset_pos = self.floor_rect.topleft - self.offset 
+        floor_offset_pos = self.floor_rect.topleft - self.offset
         self.display_surface.blit(self.floor_surface, floor_offset_pos)
         # for sprite in self.sprites()
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
