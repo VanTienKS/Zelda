@@ -32,7 +32,7 @@ class Player(pygame.sprite.Sprite):
         self.weapon = list(weapon_data.keys())[self.weapon_index]
         self.can_switch_weapon = True
         self.weapon_switch_time = None
-        self.switch_duration_cooldown = 200
+        self.switch_duration_cooldown = 400
 
         # stats
         self.stats = {

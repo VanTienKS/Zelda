@@ -1,6 +1,6 @@
 import pygame
 from random import choice
-from .settings import *
+from scripts.settings import *
 from scripts.debug import debug
 from scripts.support import import_csv_layout, import_folder
 from scripts.tile import Tile
@@ -67,6 +67,7 @@ class Level:
         self.current_attack = None
 
     def render(self):
+        
         # update and draw the game
         self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
