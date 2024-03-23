@@ -25,11 +25,11 @@ UI_BORDER_COLOR_ACTIVE = 'gold'
 
 # weapons
 weapon_data = {
-     'sword': {'colldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/sword/full.png'},
-     'lance': {'colldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/lance/full.png'},
-     'axe': {'colldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/axe/full.png'},
-     'rapier': {'colldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/rapier/full.png'},
-     'sai': {'colldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/sai/full.png'},
+     'sword': {'cooldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/sword/full.png'},
+     'lance': {'cooldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/lance/full.png'},
+     'axe': {'cooldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/axe/full.png'},
+     'rapier': {'cooldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/rapier/full.png'},
+     'sai': {'cooldown': 100, 'damage': 15, 'graphic': 'graphics/weapons/sai/full.png'},
 }
 
 magic_data = {
