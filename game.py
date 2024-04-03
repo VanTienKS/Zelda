@@ -13,9 +13,14 @@ class Game:
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
 
-        self.level = Level()
+        self.level = Level() 
 
         self.playing = True
+        
+        # sound
+        main_sound = pygame.mixer.Sound('audio/main.ogg')
+        main_sound.set_volume(0.4)
+        main_sound.play(loops=1)
 
     def run(self):
         while self.playing:
@@ -23,10 +28,12 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-
-            # update
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_m:
+                        self.level.toggle_menu()
 
             # render
+            self.screen.fill(WATER_COLOR)
             self.level.render()
 
             pygame.display.update()
